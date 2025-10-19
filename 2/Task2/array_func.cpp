@@ -41,24 +41,18 @@ namespace array_operations {
 
 	// Выводит элементы массива в консоль
 	void print_array(const vector<double>& a) {
-		for (int i = 0; i < a.size(); i++) {
-			cout << a[i] << " ";
-		}
+		iterate_array(a, [](const double& element) {
+			cout << element << " ";
+		});
 	}
 
 	// Сохраняет массив в текстовый файл
 	void save_array(const vector<double>& a, const string & file_name) {
-		ofstream file(file_name);
-		// Если файл открыт
-		if (file.is_open()) {
-			for (int i = 0; i < a.size(); i++) {
-				file << a[i] << endl;
-			}
-			file.close();
-		}
-		else {
-			cout << "Unable to open file";
-		}
+		safe_file_operation<ofstream>(file_name, [&a](ofstream& file) {
+			iterate_array(a, [&file](const double& element) {
+				file << element << endl;
+			});
+		});
 	}
 
 	// Заполняет массив случайными числами в заданном диапазоне
@@ -73,34 +67,25 @@ namespace array_operations {
 
 	// Определяет количество строк в файле
 	uint32_t file_size(const string& file_name) {
-		string empty_line;
 		uint32_t result = 0;
-		ifstream file(file_name);
-		if (!file.is_open()) {
-			cout << "File not found:" << endl;
-			return 0;
-		}
-		while (getline(file, empty_line)) {
-			result++;
-		}
-		file.close();
+		safe_file_operation<ifstream>(file_name, [&result](ifstream& file) {
+			string empty_line;
+			while (getline(file, empty_line)) {
+				result++;
+			}
+		});
 		return result;
 	}
 
 	// Загружает массив из текстового файла
 	void load_array(vector<double>& a, const string& file_name)
 	{
-		string load_line;
-		ifstream file(file_name);
-		if (!file.is_open()) {
-			cout << "File not found: " << endl;
-		}
-		else {
+		safe_file_operation<ifstream>(file_name, [&a](ifstream& file) {
+			string load_line;
 			while (getline(file, load_line)) {
 				a.push_back(stod(load_line));
 			}
-			file.close();
-		}
+		});
 	}
 
 	// Сохраняет массив в бинарный файл
