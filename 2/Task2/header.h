@@ -1,6 +1,3 @@
-// Савин Дмитрий, ИВТ-22
-// Задача номер 136б: Даны натуральное число n, действительные числа a1,..., an. Вычислить:  a1a2 ... an;
-
 #pragma once
 #include <string>
 #include <iostream>
@@ -51,9 +48,16 @@ namespace array_operations {
 	string get_file_name_from_user(); // Получение имени файла от пользователя
 	void load_array_from_file(vector<double>& a, const string& file_name); // Загрузка массива из файла с выбором формата
 	void create_new_array(vector<double>& a); // Создание нового массива с пользовательскими параметрами
+	void create_new_array(vector<double>& a, uint32_t n, double min, double max); // Создание массива с параметрами из аргументов
 	void display_results(const vector<double>& a); // Вывод результатов работы с массивом
 	void save_array_to_files(const vector<double>& a, const string& file_name); // Сохранение массива в оба формата
-	
+
+	// Работа с аргументами командной строки
+	void print_help(); // Вывод справки по использованию
+	bool parse_arguments(int argc, char* argv[], string& filename, bool& load_from_file,
+		bool& binary_mode, bool& run_tests_only, uint32_t& array_size,
+		double& min_val, double& max_val); // Обработка аргументов командной строки
+
 	// Тестирование функций
 	void tests(); // Запуск тестов для проверки корректности функций
 }
