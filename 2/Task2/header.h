@@ -6,7 +6,6 @@
 #include <cstdlib>
 #include <ctime>
 
-// Импортируем только нужные типы
 using std::vector;
 using std::string;
 using std::cout;
@@ -24,20 +23,19 @@ using std::size_t;
 
 namespace array_operations {
 
-	// Шаблонная функция для итерации по массиву
+	// Универсальный проход по массиву
 	template<typename T, typename Func>
 	void iterate_array(const vector<T>& a, Func operation) {
-		for (int i = 0; i < a.size(); i++) {
-			operation(a[i]);
-		}
+		for (const auto& element : a)
+			operation(element);
 	}
 
-	// Шаблонная функция для безопасной работы с файлами
+	// Безопасная работа с файлом
 	template<typename T, typename FileOperation>
-	bool safe_file_operation(const string& file_name, FileOperation operation) {
-		T file(file_name);
+	bool safe_file_operation(const string& file_name, FileOperation operation, ios::openmode mode = ios::in) {
+		T file(file_name, mode);
 		if (!file.is_open()) {
-			cout << "File not found: " << file_name << endl;
+			cout << "File error: " << file_name << endl;
 			return false;
 		}
 		operation(file);
@@ -45,31 +43,23 @@ namespace array_operations {
 		return true;
 	}
 
-	// Вычисляет произведение всех элементов массива
-	static double array_mult(vector<double>& a);
-
-	// Выводит элементы массива в консоль
+	// Основные функции
+	double array_mult(vector<double>& a);
 	void print_array(const vector<double>& a);
-	
-	// Сохраняет массив в текстовый файл
-	void save_array(const vector<double>& a, const string& file_name);
-	
-	// Заполняет массив случайными числами в заданном диапазоне
 	void fill_rand_array(vector<double>& a, double max, double min);
-	
-	// Определяет количество строк в файле
 	uint32_t file_size(const string& file_name);
-	
-	// Загружает массив из текстового файла
-	void load_array(vector<double>& a, const string& file_name);
-	
-	// Загружает массив из бинарного файла
-	void load_array_bin(vector<double>& a, const string& file_name);
-	
-	// Сохраняет массив в бинарный файл
-	void save_array_bin(const vector<double>& a, const string& file_name);
 
-	// Обрабатывает операции с массивом (загрузка/создание, вывод, сохранение)
-	void process_array_operations(vector<double>& a);
+	// Универсальные функции сохранения и загрузки
+	void save_array_unified(const vector<double>& a, const string& file_name, bool binary = false);
+	void load_array_unified(vector<double>& a, const string& file_name, bool binary = false);
 
+	// Пользовательский ввод и логика работы
+	string get_file_name_from_user();
+	void load_array_from_file(vector<double>& a, const string& file_name);
+	void create_new_array(vector<double>& a);
+	void display_results(const vector<double>& a);
+	void save_array_to_files(const vector<double>& a, const string& file_name);
+	
+	// Тестирование функций
+	void tests();
 }

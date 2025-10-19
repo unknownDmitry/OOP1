@@ -1,153 +1,191 @@
 #include "header.h"
+#include <cassert>
+#include <cmath>
 
 namespace array_operations {
 
-	// Вычисляет произведение всех элементов массива
-	static double array_mult(vector<double>& a) {
-		if (a.size() == 0) {
-			throw "Cause of zero length, array doesn't exist";
-		}
-
+	// Вычисление произведения элементов
+	double array_mult(vector<double>& a) {
+		if (a.empty()) throw "Array is empty!";
 		double result = 1.0;
-		for (int i = 0; i < a.size(); i++) {
-			result *= a[i];
-		}
+		for (double x : a) result *= x;
 		return result;
 	}
 
-	// Выводит элементы массива в консоль
+	// Печать массива
 	void print_array(const vector<double>& a) {
-		iterate_array(a, [](const double& element) {
-			cout << element << " ";
-		});
+		iterate_array(a, [](double val) { cout << val << " "; });
+		cout << endl;
 	}
 
-	// Сохраняет массив в текстовый файл
-	void save_array(const vector<double>& a, const string & file_name) {
-		safe_file_operation<ofstream>(file_name, [&a](ofstream& file) {
-			iterate_array(a, [&file](const double& element) {
-				file << element << endl;
-			});
-		});
-	}
-
-	// Заполняет массив случайными числами в заданном диапазоне
+	// Заполнение случайными числами
 	void fill_rand_array(vector<double>& a, double max, double min) {
-		srand(static_cast<unsigned int>(time(nullptr))); // Инициализация генератора случайных чисел
+		srand(static_cast<unsigned int>(time(nullptr)));
 		double range = max - min;
-		for (int i = 0; i < a.size(); i++) {
-			a[i] = (static_cast<double>(rand()) / RAND_MAX * range + min);
-		}
+		for (auto& x : a)
+			x = static_cast<double>(rand()) / RAND_MAX * range + min;
 	}
 
-	// Определяет количество строк в файле
+	// Подсчёт строк в текстовом файле
 	uint32_t file_size(const string& file_name) {
-		uint32_t result = 0;
-		safe_file_operation<ifstream>(file_name, [&result](ifstream& file) {
-			string empty_line;
-			while (getline(file, empty_line)) {
-				result++;
-			}
-		});
-		return result;
+		uint32_t count = 0;
+		bool success = safe_file_operation<ifstream>(file_name, [&count](ifstream& file) {
+			string line;
+			while (getline(file, line)) count++;
+		}, ios::in);
+		
+		if (!success) {
+			cout << "Cannot read file " << file_name << " for size calculation" << endl;
+		}
+		return count;
 	}
 
-	// Загружает массив из текстового файла
-	void load_array(vector<double>& a, const string& file_name)
-	{
-		safe_file_operation<ifstream>(file_name, [&a](ifstream& file) {
-			string load_line;
-			while (getline(file, load_line)) {
-				a.push_back(stod(load_line));
-			}
-		});
-	}
-
-	// Сохраняет массив в бинарный файл
-	void save_array_bin(const vector<double>& a, const string& file_name) {
-		ofstream file(file_name, ios::binary);
-		if (!file.is_open()) {
-			cout << "File opening error: " << file_name << endl;
-			return;
-		}
-		size_t size = a.size();
-		file.write(reinterpret_cast<const char*>(&size), sizeof(size));
-		file.write(reinterpret_cast<const char*>(a.data()), sizeof(double) * a.size());
-		file.close();
-	}
-
-	// Загружает массив из бинарного файла
-	void load_array_bin(vector<double>& a, const string & file_name) {
-		ifstream file(file_name, ios::binary);
-		if (!file.is_open()) {
-			cout << "File not found: " << file_name << endl;
-			return;
-		}
-		size_t size;
-		file.read(reinterpret_cast<char*>(&size), sizeof(size));
-		a.resize(size);
-		file.read(reinterpret_cast<char*>(a.data()), sizeof(double) * size);
-		file.close();
-	}
-	// Обрабатывает операции с массивом (загрузка/создание, вывод, сохранение)
-	void process_array_operations(vector<double>& a) {
-		string file_output, file_output_bin, test_on_txt;
-		char load_check;
-		uint32_t array_size;
-		double max, min;
-
-		cout << "Please, input file name: " << endl;
-		cin >> file_output;
-
-		if (file_output.length() < 4) {
-			file_output = "save.txt";
-			cout << "File name is too short, file name set by default as 'save.txt'" << endl;
-		}
-		test_on_txt = file_output.substr(file_output.length() - 4);
-		if (test_on_txt != ".txt") {
-			cout << "Your file doesn't have .txt extension, adding it automatically" << endl;
-			file_output.append(".txt");
-		}
-		file_output_bin = file_output;
-		file_output_bin.replace(file_output_bin.length() - 3, 3, "bin");
-
-		cout << "For load from file write Y or y: " << endl;
-		cin >> load_check;
-
-		if (load_check == 'Y' || load_check == 'y') {
-			cout << "For load from BIN write B or b: " << endl;
-			cin >> load_check;
-			if (load_check == 'B' || load_check == 'b') {
-				load_array_bin(a, file_output_bin);
-			}
-			else {
-				load_array(a, file_output);
-			}
+	// Универсальное сохранение (текст/бинарный)
+	void save_array_unified(const vector<double>& a, const string& file_name, bool binary) {
+		bool success = false;
+		if (binary) {
+			success = safe_file_operation<ofstream>(file_name, [&a](ofstream& file) {
+				size_t size = a.size();
+				file.write(reinterpret_cast<const char*>(&size), sizeof(size));
+				file.write(reinterpret_cast<const char*>(a.data()), sizeof(double) * a.size());
+			}, ios::binary | ios::out);
 		}
 		else {
-			cout << "Input array length: " << endl;
-			cin >> array_size;
-			a.resize(array_size);
-			cout << "Input min value: " << endl;
-			cin >> min;
-			cout << "Input max value: " << endl;
-			cin >> max;
-			fill_rand_array(a, max, min);
+			success = safe_file_operation<ofstream>(file_name, [&a](ofstream& file) {
+				iterate_array(a, [&file](double val) { file << val << endl; });
+			}, ios::out);
 		}
-
-		cout << "Your array: " << endl;
-		print_array(a);
-		cout << endl;
-
-		try {
-			cout << "The result is: " << array_mult(a) << endl;
+		
+		if (success) {
+			cout << "Array successfully saved to " << file_name << endl;
+		} else {
+			cout << "Failed to save array to " << file_name << endl;
 		}
-		catch (const char* error_message) {
-			cout << error_message << endl;
-		}
-
-		save_array(a, file_output);
-		save_array_bin(a, file_output_bin);
 	}
 
+	// Универсальная загрузка (текст/бинарный)
+	void load_array_unified(vector<double>& a, const string& file_name, bool binary) {
+		a.clear();
+		bool success = false;
+		if (binary) {
+			success = safe_file_operation<ifstream>(file_name, [&a](ifstream& file) {
+				size_t size;
+				file.read(reinterpret_cast<char*>(&size), sizeof(size));
+				a.resize(size);
+				file.read(reinterpret_cast<char*>(a.data()), sizeof(double) * size);
+			}, ios::binary | ios::in);
+		}
+		else {
+			success = safe_file_operation<ifstream>(file_name, [&a](ifstream& file) {
+				string line;
+				while (getline(file, line)) a.push_back(stod(line));
+			}, ios::in);
+		}
+		
+		if (!success) {
+			cout << "Failed to load array from " << file_name << ". Creating new array instead." << endl;
+			create_new_array(a);
+		} else {
+			cout << "Array successfully loaded from " << file_name << endl;
+		}
+	}
+
+	// Получение имени файла
+	string get_file_name_from_user() {
+		string name;
+		cout << "Enter file name: ";
+		cin >> name;
+
+		if (name.size() < 4) {
+			cout << "Too short, using default 'save.txt'\n";
+			return "save.txt";
+		}
+
+		if (name.substr(name.size() - 4) != ".txt") {
+			cout << "No .txt extension, added automatically.\n";
+			name += ".txt";
+		}
+		return name;
+	}
+
+	// Загрузка массива из файла (в зависимости от формата)
+	void load_array_from_file(vector<double>& a, const string& file_name) {
+		cout << "Load from BIN (B/b)? ";
+		char c; cin >> c;
+
+		bool binary = (c == 'B' || c == 'b');
+		string fname = file_name;
+		if (binary) fname.replace(fname.size() - 3, 3, "bin");
+
+		load_array_unified(a, fname, binary);
+	}
+
+	// Создание нового массива
+	void create_new_array(vector<double>& a) {
+		uint32_t n;
+		double min, max;
+		cout << "Array size: "; cin >> n;
+		cout << "Min value: "; cin >> min;
+		cout << "Max value: "; cin >> max;
+
+		a.resize(n);
+		fill_rand_array(a, max, min);
+	}
+
+	// Вывод результатов
+	void display_results(const vector<double>& a) {
+		cout << "Your array:\n";
+		print_array(a);
+		try {
+			vector<double> copy = a;
+			cout << "Product = " << array_mult(copy) << endl;
+		}
+		catch (const char* err) {
+			cout << err << endl;
+		}
+	}
+
+	// Сохранение сразу в оба формата
+	void save_array_to_files(const vector<double>& a, const string& file_name) {
+		string bin_name = file_name;
+		bin_name.replace(bin_name.size() - 3, 3, "bin");
+		save_array_unified(a, file_name, false);
+		save_array_unified(a, bin_name, true);
+	}
+
+	// Тестирование функции array_mult
+	void tests() {
+		
+		// Тест 1: Простые единицы
+		{
+			vector<double> t = {1, 1, 1}; // Проверка assert'ом
+			assert(abs(array_mult(t) - 1) <= 1e-9);
+		}
+		
+		// Тест 2: Положительные числа
+		{
+			vector<double> t = {2, 2, 3};
+			assert(abs(array_mult(t) - 12) <= 1e-9);
+		}
+		
+		// Тест 3: Последовательные числа
+		{
+			vector<double> t = {1, 2, 3};
+			assert(abs(array_mult(t) - 6) <= 1e-9);
+		}
+		
+		// Тест 4: Десятичные дроби
+		{
+			vector<double> t = {0.5, 2, 4};
+			assert(abs(array_mult(t) - 4) <= 1e-9);
+		}
+		
+		// Тест 5: Отрицательные числа
+		{
+			vector<double> t = {-1, 2, -3};
+			assert(abs(array_mult(t) - 6) <= 1e-9);
+		}
+		
+		cout << "All tests passed!" << endl;
+	}
 }
