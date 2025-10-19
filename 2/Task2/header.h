@@ -37,7 +37,7 @@ namespace array_operations {
 	bool safe_file_operation(const string& file_name, FileOperation operation) {
 		T file(file_name);
 		if (!file.is_open()) {
-			std::cout << "File not found: " << file_name << std::endl;
+			cout << "File not found: " << file_name << endl;
 			return false;
 		}
 		operation(file);
