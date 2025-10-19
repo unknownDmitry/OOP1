@@ -22,11 +22,11 @@ using std::srand;
 using std::time;
 using std::size_t;
 
-namespace ArrayFuncs {
+namespace array_operations {
 
 	vector<double> a;
 
-	// Вычисление результата
+	// Вычисляет произведение всех элементов массива
 	static double array_mult(vector<double>& a) {
 		if (a.size() == 0) {
 			throw "Cause of zero length, array doesn't exist";
@@ -39,14 +39,14 @@ namespace ArrayFuncs {
 		return result;
 	}
 
-	//Вывод массива
+	// Выводит элементы массива в консоль
 	void print_array(const vector<double>& a) {
 		for (int i = 0; i < a.size(); i++) {
 			cout << a[i] << " ";
 		}
 	}
 
-	//Сохранение массива с файл
+	// Сохраняет массив в текстовый файл
 	void save_array(const vector<double>& a, const string & file_name) {
 		ofstream file(file_name);
 		// Если файл открыт
@@ -61,7 +61,7 @@ namespace ArrayFuncs {
 		}
 	}
 
-	//Заполнение массива случайными числами 
+	// Заполняет массив случайными числами в заданном диапазоне
 	void fill_rand_array(vector<double>& a, double max, double min) {
 		srand(static_cast<unsigned int>(time(nullptr))); // Инициализация генератора случайных чисел
 		double range = max - min;
@@ -71,7 +71,7 @@ namespace ArrayFuncs {
 		}
 	}
 
-	//Определение размера файла в виде числа строк. На входе имя файла в кавычках
+	// Определяет количество строк в файле
 	uint32_t file_size(const string& file_name) {
 		string empty_line;
 		uint32_t result = 0;
@@ -87,7 +87,7 @@ namespace ArrayFuncs {
 		return result;
 	}
 
-	//Загрузка массива из файла
+	// Загружает массив из текстового файла
 	void load_array(vector<double>& a, const string& file_name)
 	{
 		string load_line;
@@ -103,7 +103,7 @@ namespace ArrayFuncs {
 		}
 	}
 
-	// Сохранение массива из бинарного файла
+	// Сохраняет массив в бинарный файл
 	void save_array_bin(const vector<double>& a, const string& file_name) {
 		ofstream file(file_name, ios::binary);
 		if (!file.is_open()) {
@@ -117,7 +117,7 @@ namespace ArrayFuncs {
 		}
 	}
 
-	// Создание и заполнение массива из бинарного файла 
+	// Загружает массив из бинарного файла
 	void load_array_bin(vector<double>& a, const string & file_name) {
 		ifstream file(file_name, ios::binary);
 		if (!file.is_open()) {
@@ -131,12 +131,8 @@ namespace ArrayFuncs {
 			file.close();
 		}
 	}
-};
-
-
-namespace print_array_operations {
+	// Обрабатывает операции с массивом (загрузка/создание, вывод, сохранение)
 	void process_array_operations(vector<double>& a) {
-		using namespace ArrayFuncs;
 		string file_output, file_output_bin, test_on_txt;
 		char load_check;
 		uint32_t array_size;
@@ -195,4 +191,5 @@ namespace print_array_operations {
 		save_array(a, file_output);
 		save_array_bin(a, file_output_bin);
 	}
+
 }
