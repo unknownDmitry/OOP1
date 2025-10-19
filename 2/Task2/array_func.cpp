@@ -1,30 +1,6 @@
 #include "header.h"
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <cstdlib>
-#include <ctime>
-
-// Импортируем только нужные типы
-using std::vector;
-using std::string;
-using std::cout;
-using std::cin;
-using std::endl;
-using std::ofstream;
-using std::ifstream;
-using std::ios;
-using std::getline;
-using std::stod;
-using std::rand;
-using std::srand;
-using std::time;
-using std::size_t;
 
 namespace array_operations {
-
-	vector<double> a;
 
 	// Вычисляет произведение всех элементов массива
 	static double array_mult(vector<double>& a) {
@@ -60,7 +36,6 @@ namespace array_operations {
 		srand(static_cast<unsigned int>(time(nullptr))); // Инициализация генератора случайных чисел
 		double range = max - min;
 		for (int i = 0; i < a.size(); i++) {
-			cout << i << endl;
 			a[i] = (static_cast<double>(rand()) / RAND_MAX * range + min);
 		}
 	}
@@ -92,29 +67,27 @@ namespace array_operations {
 	void save_array_bin(const vector<double>& a, const string& file_name) {
 		ofstream file(file_name, ios::binary);
 		if (!file.is_open()) {
-			cout << "File opening error: " << endl;
+			cout << "File opening error: " << file_name << endl;
+			return;
 		}
-		else {
-			size_t size = a.size();
-			file.write(reinterpret_cast<const char*>(&size), sizeof(size));
-			file.write(reinterpret_cast<const char*>(a.data()), sizeof(double) * a.size());
-			file.close();
-		}
+		size_t size = a.size();
+		file.write(reinterpret_cast<const char*>(&size), sizeof(size));
+		file.write(reinterpret_cast<const char*>(a.data()), sizeof(double) * a.size());
+		file.close();
 	}
 
 	// Загружает массив из бинарного файла
 	void load_array_bin(vector<double>& a, const string & file_name) {
 		ifstream file(file_name, ios::binary);
 		if (!file.is_open()) {
-			cout << "File not found: " << endl;
+			cout << "File not found: " << file_name << endl;
+			return;
 		}
-		else {
-			size_t size;
-			file.read(reinterpret_cast<char*>(&size), sizeof(size));
-			a.resize(size);
-			file.read(reinterpret_cast<char*>(a.data()), sizeof(double) * size);
-			file.close();
-		}
+		size_t size;
+		file.read(reinterpret_cast<char*>(&size), sizeof(size));
+		a.resize(size);
+		file.read(reinterpret_cast<char*>(a.data()), sizeof(double) * size);
+		file.close();
 	}
 	// Обрабатывает операции с массивом (загрузка/создание, вывод, сохранение)
 	void process_array_operations(vector<double>& a) {

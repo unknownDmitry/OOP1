@@ -1,8 +1,4 @@
-#include <vector>
 #include "header.h"
-
-// Импортируем только нужные типы
-using std::vector;
 
 using namespace array_operations;
 

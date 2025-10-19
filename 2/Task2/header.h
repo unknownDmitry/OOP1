@@ -3,10 +3,24 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 // Импортируем только нужные типы
 using std::vector;
 using std::string;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::ofstream;
+using std::ifstream;
+using std::ios;
+using std::getline;
+using std::stod;
+using std::rand;
+using std::srand;
+using std::time;
+using std::size_t;
 
 namespace array_operations {
 
