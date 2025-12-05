@@ -142,8 +142,6 @@ namespace math_and_files {
 		file_write.close();
 	}
 
-
-
 	// Функция для сравнения double с заданной точностью
 	bool nearly_equal(double a, double b, double epsilon = 0.01) {
 		return std::fabs(a - b) < epsilon;
@@ -151,17 +149,17 @@ namespace math_and_files {
 
 	//Ассерты для функции логики
 	void test() {
-		// Простой тест 1: {4, 4}
+		// Тест 1: {4, 4}
 		std::vector<double> a{ 4.0, 4.0 };
 		// √4=2, (2-4)^2=4, (2-4)^2=4, сумма=8
 		assert(nearly_equal(calc(a), 8.0));
 
-		// Простой тест 2: {9, -9}
+		// Тест 2: {9, -9}
 		a = { 9.0, -9.0 };
 		// √9=3, (3-9)^2=36; √9=3, (3-(-9))^2=144; сумма=180
 		assert(nearly_equal(calc(a), 180.0));
 
-		// Простой тест 3: {0, 1}
+		// Тест 3: {0, 1}
 		a = { 0.0, 1.0 };
 		// √0=0, (0-0)^2=0; √1=1, (1-1)^2=0; сумма=0
 		assert(nearly_equal(calc(a), 0.0));

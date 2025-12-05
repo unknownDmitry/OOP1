@@ -127,7 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Task3.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Rectangle_class.cpp" />
+    <ClCompile Include="Rectangle_class.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

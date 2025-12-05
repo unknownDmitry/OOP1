@@ -15,7 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Task3.cpp">
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle_class.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle_class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
