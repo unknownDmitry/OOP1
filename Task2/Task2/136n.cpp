@@ -2,6 +2,7 @@
 //Задача 136н: Даны натуральное число n, действительные числа a1,..., an. Вычислить Σ((√|a[i]| - a[i])^2)
 
 #include "header.h" // Подключение своего заголовочного файла
+#include <ctime>    // Для srand(time(NULL))
 using namespace math_and_files; // Подключение своего пространства имён
 
 int main(int argc, char* argv[])
@@ -36,10 +37,21 @@ int main(int argc, char* argv[])
 
       if (char_choice == 's' || char_choice == 'S') {
          std::string file_name;
-         std::cout << "Input filename (*.txt): ";
+         char file_type{};
+         std::cout << "Input filename: ";
          std::cin >> file_name;
+         std::cout << "Save as binary file? (y/n): ";
+         std::cin >> file_type;
+
          try {
-            f_save_arr(a, file_name);   // Сохраняем массив в файл
+            if (file_type == 'y' || file_type == 'Y') {
+               f_save_arr_bin(a, file_name);   // Сохраняем массив в бинарный файл
+               std::cout << "Array saved to binary file successfully!" << std::endl;
+            }
+            else {
+               f_save_arr(a, file_name);   // Сохраняем массив в текстовый файл
+               std::cout << "Array saved to text file successfully!" << std::endl;
+            }
          }
          catch (const std::invalid_argument& error) {
             std::cout << error.what(); // Если не получается, выдаём ошибку
@@ -64,11 +76,21 @@ int main(int argc, char* argv[])
       if (char_choice == 'f' || char_choice == 'F') {
 
          std::string file_name;
-         std::cout << "Input filename(*.txt): ";
+         char file_type{};
+         std::cout << "Input filename: ";
          std::cin >> file_name;
+         std::cout << "Read from binary file? (y/n): ";
+         std::cin >> file_type;
 
          try {
-            a = f_read_arr(file_name); // Чтение массива из файла
+            if (file_type == 'y' || file_type == 'Y') {
+               a = f_read_arr_bin(file_name); // Чтение массива из бинарного файла
+               std::cout << "Array read from binary file successfully!" << std::endl;
+            }
+            else {
+               a = f_read_arr(file_name); // Чтение массива из текстового файла
+               std::cout << "Array read from text file successfully!" << std::endl;
+            }
          }
          catch (const std::invalid_argument& error) {
             std::cout << error.what(); // Если не получается, выдаём ошибку
@@ -101,11 +123,21 @@ int main(int argc, char* argv[])
 
       if (char_choice == 's' || char_choice == 'S') {
          std::string file_name;
-         std::cout << "Input filename (*.txt): ";
+         char file_type{};
+         std::cout << "Input filename: ";
          std::cin >> file_name;
+         std::cout << "Save as binary file? (y/n): ";
+         std::cin >> file_type;
 
          try {
-            f_save_arr(a, file_name);   // Сохраняем массив в файл
+            if (file_type == 'y' || file_type == 'Y') {
+               f_save_arr_bin(a, file_name);   // Сохраняем массив в бинарный файл
+               std::cout << "Array saved to binary file successfully!" << std::endl;
+            }
+            else {
+               f_save_arr(a, file_name);   // Сохраняем массив в текстовый файл
+               std::cout << "Array saved to text file successfully!" << std::endl;
+            }
          }
          catch (const std::invalid_argument& error) {
             std::cout << error.what(); // Если не получается, выдаём ошибку

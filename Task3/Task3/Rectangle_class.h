@@ -1,5 +1,5 @@
 //Савин Дмитрий ИВТ-22
-//Класс Прямоугольник
+//Класс Прямоугольник (сокращённая версия)
 
 #pragma once
 
@@ -11,7 +11,10 @@
 
 using std::string;
 
-const float eps = 1e-4; // Константа для сравнения
+// Declare tests function
+void tests();
+
+const float eps = 1e-4f; 
 
 class Rectangle {
 private:
@@ -34,22 +37,4 @@ public:
    // Геометрические функции
    float area() const;                // Вычисляет площадь
    float perimeter() const;           // Вычисляет периметр
-   float diagonal() const;            // Вычисляет длину диагонали
-   float aspect_ratio() const;        // Вычисляет соотношение сторон (ширина/высота)
-   bool is_square() const;            // Проверяет, является ли прямоугольник квадратом
-
-   // Операции изменения размеров
-   void add_size(const Rectangle& r);     // Увеличивает размеры на размеры другого прямоугольника
-   void subtract_size(const Rectangle& r); // Уменьшает размеры на размеры другого прямоугольника
-   void scale(const float& k);             // Масштабирует размеры на коэффициент k
-
-   // Функции сравнения
-   bool equal_size(const Rectangle& r) const; // Сравнивает размеры с другим прямоугольником
-   bool bigger_than(const Rectangle& r) const; // Сравнивает площади (текущий > другого)
-
-   // Строковое представление
-   string to_str() const;             // Возвращает строку с шириной и высотой
-   string info() const;               // Возвращает детальную информацию о прямоугольнике
 };
-
-void tests(); // Тесты

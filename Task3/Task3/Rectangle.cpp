@@ -1,5 +1,5 @@
 //Савин Дмитрий ИВТ-22
-//Класс Прямоугольник
+//Класс Прямоугольник (сокращённая версия)
 
 #include "Rectangle_class.h"
 
@@ -30,11 +30,15 @@ int main() {
    }
 
    cout << "Rectangle B:" << endl;
-   cout << B->info() << endl << endl;
+   cout << "Area: " << B->area() << endl;
+   cout << "Perimeter: " << B->perimeter() << endl << endl;
 
-   cout << "A: " << A.info() << endl << endl;
+   cout << "A: " << endl;
+   cout << "Area: " << A.area() << endl;
+   cout << "Perimeter: " << A.perimeter() << endl << endl;
 
    delete B;
 
-   tests();
+   tests(); // Now this will compile and link correctly
+   return 0;
 }

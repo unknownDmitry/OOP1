@@ -4,10 +4,9 @@
 2*4*....*n для чётного n. Для заданного натурального n вычислить: (-1)^(n+1) * n!!
 */
 
-#include <cmath>
-#include "header.h"
-#include <cassert>
+#include "calculation.h"
 
+/// Вычисляет значение на основе n (произведение четных/нечетных чисел с чередующимся знаком)
 int calculation(int n) {
 	// Проверка натурального n
 	assert(n >= 1);
@@ -24,4 +23,16 @@ int calculation(int n) {
 	int result = pow(-1, n + 1) * mult;
 
 	return result;
+}
+
+// Функция для запуска тестов
+void tests() {
+	// Тесты
+	assert(calculation(1) == 1);
+	assert(calculation(2) == -2);
+	assert(calculation(3) == 3);
+	assert(calculation(4) == -8);
+	assert(calculation(5) == 15);
+
+	std::cout << "All tests passed successfully!" << std::endl;
 }

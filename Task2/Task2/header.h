@@ -10,6 +10,7 @@
 #include <string>
 #include <fstream>
 #include <cassert>
+#include <memory>
 
 namespace math_and_files {
 
@@ -27,11 +28,19 @@ namespace math_and_files {
 
 	// Чтение массива длины n из файла с именем file_name
 	std::vector<double> f_read_arr(const std::string& filename);
-	double* f_read_arr(int& n, const std::string& file_name);
+	std::unique_ptr<double[]> f_read_arr(int* n, const std::string& file_name);
 
 	//Запись массива arr длины n в файл с именем file_name
 	void f_save_arr(std::vector<double>& arr, const std::string& file_name);
 	void f_save_arr(float arr[], int n, const std::string& file_name);
+
+	// Чтение массива из бинарного файла
+	std::vector<double> f_read_arr_bin(const std::string& file_name);
+	std::unique_ptr<double[]> f_read_arr_bin(int* n, const std::string& file_name);
+
+	// Запись массива в бинарный файл
+	void f_save_arr_bin(std::vector<double>& arr, const std::string& file_name);
+	void f_save_arr_bin(double arr[], int n, const std::string& file_name);
 
 	void test();
 }

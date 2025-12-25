@@ -4,19 +4,11 @@
 2*4*....*n для чётного n. Для заданного натурального n вычислить: (-1)^(n+1) * n!!
 */
 
-#include <iostream>
-#include <cstdlib>
-#include "header.h"
-#include <cassert>
+#include "calculation.h"
 
 int main(int argc, char* argv[]) {
 
-	// Тесты
-	assert(calculation(1) == 1);
-	assert(calculation(2) == -2);
-	assert(calculation(3) == 3);
-	assert(calculation(4) == -8);
-	assert(calculation(5) == 15);
+	tests();
 
 	// Получение аргумента n из командной строки
 	int n = atoi(argv[1]);
