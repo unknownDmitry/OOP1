@@ -4,7 +4,8 @@
 2*4*....*n для чётного n. Для заданного натурального n вычислить: (-1)^(n+1) * n!!
 */
 
-#include "calculation.h"
+#include "../StaticLib/calculation.h"
+#include <iostream>
 
 int main(int argc, char* argv[]) {
 
@@ -25,4 +26,4 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 //Для компиляции программы:
-//gcc 113b.cpp func.cpp -lstdc++ -o 113.exe
+//gcc 113b.cpp ../StaticLib/calculation.cpp -lstdc++ -o 113.exe
