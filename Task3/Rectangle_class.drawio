@@ -1,17 +1,44 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
   <diagram name="Page-1" id="Y5LPrzJRN4dLJYQQqrc5">
-    <mxGraphModel dx="2825" dy="1662" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1554" dy="914" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="0tQcsIU4n-msWEOw-rqI-1" value="+Rectangle()&#xa;+Rectangle(float w, float h)&#xa;+get_width():float const&#xa;+get_height():float const&#xa;+set_width(const float &amp;w):void&#xa;+set_height(const float &amp;h):void&#xa;+area():float const&#xa;+perimeter():float const&#xa;+diagonal():float const&#xa;+aspect_ratio():float const&#xa;+is_squarel():bool const&#xa;+add_size(const Rectangle &amp;r):void&#xa;+substract_size(const Rectangle &amp;r):void&#xa;+scale(const float &amp;k):void&#xa;+equal_size(const Rectangle &amp;r):bool const&#xa;+bigger_than(const Rectangle &amp;r):bool const&#xa;+to_str():string const&#xa;+info():string const" style="swimlane;startSize=0;spacingLeft=10;align=left;spacingBottom=0;fontStyle=0;verticalAlign=top;fontSize=19;" vertex="1" parent="1">
-          <mxGeometry x="240" y="410" width="440" height="430" as="geometry" />
+        <mxCell id="0tQcsIU4n-msWEOw-rqI-2" value="&lt;div&gt;Data members:&lt;/div&gt;-width:float&lt;div&gt;-height:float&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="80" y="200" width="280" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="0tQcsIU4n-msWEOw-rqI-2" value="-float width&lt;div&gt;-float height&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fontSize=18;" vertex="1" parent="1">
-          <mxGeometry x="240" y="340" width="440" height="70" as="geometry" />
+        <mxCell id="0tQcsIU4n-msWEOw-rqI-3" value="Rectangle" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="80" y="120" width="280" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="0tQcsIU4n-msWEOw-rqI-3" value="Rectangle" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fontStyle=0" vertex="1" parent="1">
-          <mxGeometry x="240" y="280" width="440" height="60" as="geometry" />
+        <mxCell id="iBXVDtmsMLRBfSvwAFOM-1" value="UML" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;strokeWidth=5;fontSize=54;" parent="1" vertex="1">
+          <mxGeometry x="120" y="40" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iBXVDtmsMLRBfSvwAFOM-4" value="Rectangle" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fontStyle=0" parent="1" vertex="1">
+          <mxGeometry x="440" y="120" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iBXVDtmsMLRBfSvwAFOM-5" value="ADT" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;strokeWidth=5;fontSize=54;" parent="1" vertex="1">
+          <mxGeometry x="520" y="40" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iBXVDtmsMLRBfSvwAFOM-7" value="&lt;br&gt;&lt;p dir=&quot;auto&quot; style=&quot;white-space: pre-wrap;&quot;&gt;Methods:&lt;br&gt;+ create(width, height)&lt;br&gt;+ get_width() -&amp;gt; value&lt;br&gt;+ get_height() -&amp;gt; value&lt;br&gt;+ set_width(value)&lt;br&gt;+ set_height(value)&lt;br&gt;+ area() -&amp;gt; width * height&lt;br&gt;+ perimeter() -&amp;gt; 2*(width + height)&lt;br&gt;&lt;/p&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fontSize=20;spacingBottom=0;spacing=0;" parent="1" vertex="1">
+          <mxGeometry x="440" y="280" width="320" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="iBXVDtmsMLRBfSvwAFOM-8" value="&lt;p dir=&quot;auto&quot; style=&quot;white-space: pre-wrap;&quot;&gt;&lt;br&gt;Mutators:&lt;br&gt;+ set_width(w: float): void&lt;br&gt;+ set_height(h: float): void&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fontSize=18;spacingBottom=-14;" parent="1" vertex="1">
+          <mxGeometry x="80" y="480" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="iBXVDtmsMLRBfSvwAFOM-9" value="&lt;div&gt;Data members:&lt;/div&gt;-width,&lt;div&gt;-height&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="440" y="200" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="iBXVDtmsMLRBfSvwAFOM-10" value="&lt;br&gt;Constructors:&lt;br class=&quot;Apple-interchange-newline&quot;&gt;&lt;span style=&quot;color: rgb(255, 255, 255); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: rgb(27, 29, 30); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;+ Rectangle()&lt;/span&gt;&lt;br style=&quot;forced-color-adjust: none; color: rgb(255, 255, 255); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: rgb(27, 29, 30); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; box-shadow: none !important;&quot;&gt;&lt;span style=&quot;color: rgb(255, 255, 255); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: rgb(27, 29, 30); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;+ Rectangle(w: float, h: float)&lt;/span&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontSize=18;spacingLeft=10;" parent="1" vertex="1">
+          <mxGeometry x="80" y="280" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="iBXVDtmsMLRBfSvwAFOM-11" value="Accessors:&lt;br&gt;&lt;span style=&quot;color: rgb(255, 255, 255); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: rgb(27, 29, 30); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;+ get_width(): float&lt;/span&gt;&lt;br style=&quot;forced-color-adjust: none; color: rgb(255, 255, 255); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: rgb(27, 29, 30); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; box-shadow: none !important;&quot;&gt;&lt;span style=&quot;color: rgb(255, 255, 255); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: rgb(27, 29, 30); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;+ get_height(): float&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontSize=18;spacingLeft=10;spacingBottom=-8;" parent="1" vertex="1">
+          <mxGeometry x="80" y="380" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="iBXVDtmsMLRBfSvwAFOM-12" value="Query Methods:&#xa;+ area(): float&#xa;+ perimeter(): float" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="80" y="580" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="vjKFQ2WoILGZ4-qHeBkw-1" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;NOTATION:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- data members&lt;/div&gt;&lt;div&gt;+ methods&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="80" y="720" width="180" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

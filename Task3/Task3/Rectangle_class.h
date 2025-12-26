@@ -1,17 +1,8 @@
 //Савин Дмитрий ИВТ-22
-//Класс Прямоугольник (сокращённая версия)
+//Класс Прямоугольник
 
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <cmath>
-#include <cassert>
-
-using std::string;
-
-// Declare tests function
 void tests();
 
 const float eps = 1e-4f; 
@@ -37,4 +28,5 @@ public:
    // Геометрические функции
    float area() const;                // Вычисляет площадь
    float perimeter() const;           // Вычисляет периметр
+
 };

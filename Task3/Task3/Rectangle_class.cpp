@@ -1,9 +1,9 @@
 //Савин Дмитрий ИВТ-22
-//Класс Прямоугольник (сокращённая версия)
+//Класс Прямоугольник
 
 #include "Rectangle_class.h"
-
-// Конструкторы
+#include <cmath>
+#include <cassert>
 
 // Конструктор по умолчанию
 Rectangle::Rectangle() {
@@ -17,8 +17,6 @@ Rectangle::Rectangle(float w, float h) {
    height = h;
 }
 
-// Геттеры
-
 // Возвращает значение ширины
 float Rectangle::get_width() const {
    return width;
@@ -29,19 +27,15 @@ float Rectangle::get_height() const {
    return height;
 }
 
-// Сеттеры
-
 // Устанавливает новое значение ширины
 void Rectangle::set_width(const float& w) {
-   width = w;
+   (width < 0.0) ? (width = 0.0) : (width = w);
 }
 
 // Устанавливает новое значение высоты
 void Rectangle::set_height(const float& h) {
-   height = h;
+   (height < 0.0) ? (height = 0.0) : (height = h);
 }
-
-// Геометрические функции
 
 // Вычисляет площадь
 float Rectangle::area() const {

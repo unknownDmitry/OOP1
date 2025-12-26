@@ -3,5 +3,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="StaticLib/StaticLib.vcxproj" Id="e2e5b157-7a0d-416c-86b0-0ffe2b4d45c9" />
   <Project Path="Task2/Task2.vcxproj" Id="fab7dfee-dad0-427e-9f67-ac2522a4ed82" />
 </Solution>

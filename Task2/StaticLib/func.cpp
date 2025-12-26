@@ -1,9 +1,3 @@
-// MathAndFiles.cpp : Defines the functions for the static library.
-//
-
-#include "pch.h"
-#include "framework.h"
-
 //Савин Дмитрий ИВТ-22
 //Задача 136н: Даны натуральное число n, действительные числа a1,..., an. Вычислить Σ((√|a[i]| - a[i])^2)
 
@@ -21,31 +15,12 @@ namespace math_and_files {
 	}
 
 
-	// Заполняет массив arr длины n псевдослучайными числами от -50 до 50.
-	// Принимает: arr - массив, n - размер массива.
-	void fill_arr(double arr[], int n)
-	{
-		for (unsigned i = 0; i < n; i++) { // числа от -50 до 50 с 2 знаками после запятой
-			arr[i] = (rand() % 101 - 50) + ((rand() % 201 - 100) / 100.0);
-		}
-	}
-
 	// Выводит элементы массива arr в консоль через табуляцию.
 	// Принимает: arr - вектор для вывода.
 	void output_arr(std::vector<double>& arr)
 	{
 		for (unsigned i = 0; i < arr.size(); i++) {
 			std::cout << arr[i] << '\t';
-		}
-		std::cout << std::endl;
-	}
-
-	// Выводит элементы массива arr длины n в консоль через табуляцию.
-	// Принимает: arr - массив, n - размер массива.
-	void output_arr(double arr[], int n)
-	{
-		for (unsigned i = 0; i < n; i++) {
-			std::cout << arr[i] << "\t";
 		}
 		std::cout << std::endl;
 	}
@@ -57,20 +32,7 @@ namespace math_and_files {
 	{
 		double result = 0.0;
 		for (unsigned i = 0; i < arr.size(); i++) {
-			double temp = pow((sqrt(abs(arr[i])) - arr[i]), 2);
-			result += temp;
-		}
-		return result;
-	}
-
-	// Вычисляет сумму по формуле Σ((√|a[i]| - a[i])^2).
-	// Принимает: arr - массив чисел, n - размер массива.
-	// Возвращает: double - результат вычисления.
-	double calc(double arr[], int n)
-	{
-		double result = 0.0;
-		for (unsigned i = 0; i < n; i++) {
-			double temp = pow((sqrt(abs(arr[i])) - arr[i]), 2);
+			double temp = pow((sqrt(fabs(arr[i])) - arr[i]), 2);
 			result += temp;
 		}
 		return result;
@@ -142,26 +104,6 @@ namespace math_and_files {
 			file_write << arr.size() << std::endl;
 
 			for (unsigned i = 0; i < arr.size(); i++) {
-				file_write << arr[i] << " ";
-			}
-		}
-		else {
-			throw std::invalid_argument("Access error - unable to create file");
-		}
-
-		file_write.close();
-	}
-
-	// Записывает массив arr длины n в файл.
-	// Принимает: arr - массив для записи, n - размер массива, file_name - имя файла.
-	void f_save_arr(double arr[], int n, const std::string& file_name)
-	{
-		std::ofstream file_write(file_name);
-
-		if (file_write.is_open()) {
-			file_write << n << std::endl;
-
-			for (unsigned i = 0; i < n; i++) {
 				file_write << arr[i] << " ";
 			}
 		}
