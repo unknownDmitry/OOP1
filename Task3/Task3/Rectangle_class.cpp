@@ -13,8 +13,8 @@ Rectangle::Rectangle() {
 
 // Конструктор с параметрами
 Rectangle::Rectangle(float w, float h) {
-   width = w;
-   height = h;
+   width = (w < 0.0) ? 0.0 : w;
+   height = (h < 0.0) ? 0.0 : h;
 }
 
 // Возвращает значение ширины
@@ -29,12 +29,12 @@ float Rectangle::get_height() const {
 
 // Устанавливает новое значение ширины
 void Rectangle::set_width(const float& w) {
-   (width < 0.0) ? (width = 0.0) : (width = w);
+   width = (w < 0.0) ? 0.0 : w;
 }
 
 // Устанавливает новое значение высоты
 void Rectangle::set_height(const float& h) {
-   (height < 0.0) ? (height = 0.0) : (height = h);
+   height = (h < 0.0) ? 0.0 : h;
 }
 
 // Вычисляет площадь

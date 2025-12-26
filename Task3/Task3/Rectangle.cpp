@@ -15,8 +15,8 @@ int main() {
    tests();
 
    // 1.Статическое создание объектов
-   Rectangle staticRect1(4.5, -1);
-   Rectangle staticRect2(5.0, 6.0);
+   Rectangle staticRect1(1, 2);
+   Rectangle staticRect2(5.2, 6.1);
 
    // 2. Динамическое создание объекта
    Rectangle* dynamicRect = new Rectangle(7.0, 8.0);
