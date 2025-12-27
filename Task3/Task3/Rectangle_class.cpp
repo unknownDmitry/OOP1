@@ -39,10 +39,12 @@ float Rectangle::get_height() const {
    return height;
 }
 
+// Возвращает значение x
 float Rectangle::get_x() const {
    return x;
 }
 
+// Возвращает значение y
 float Rectangle::get_y() const {
    return y;
 }
@@ -57,10 +59,12 @@ void Rectangle::set_height(const float& h) {
    height = (h < 0.0) ? 0.0 : h;
 }
 
+// Устанавливает новое x
 void Rectangle::set_x(const float& x) {
    this->x = x;
 }
 
+// Устанавливает новое y
 void Rectangle::set_y(const float& y) {
    this->y = y;
 }
