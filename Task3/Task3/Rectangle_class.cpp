@@ -9,12 +9,24 @@
 Rectangle::Rectangle() {
    width = 0.0;
    height = 0.0;
+   x = 0.0;
+   y = 0.0;
 }
 
-// Конструктор с параметрами
-Rectangle::Rectangle(float w, float h) {
-   width = (w < 0.0) ? 0.0 : w;
-   height = (h < 0.0) ? 0.0 : h;
+// Конструктор с параметрами без координат
+Rectangle::Rectangle(float width, float height) {
+   this->width = width;
+   this->height = height;
+   this->x = 0.0;
+   this->y = 0.0;
+}
+
+// Конструктор с параметрами с координатами
+Rectangle::Rectangle(float width, float height, float x, float y) {
+   this->width = width;
+   this->height = height;
+   this->x = x;
+   this->y = y;
 }
 
 // Возвращает значение ширины
@@ -27,6 +39,14 @@ float Rectangle::get_height() const {
    return height;
 }
 
+float Rectangle::get_x() const {
+   return x;
+}
+
+float Rectangle::get_y() const {
+   return y;
+}
+
 // Устанавливает новое значение ширины
 void Rectangle::set_width(const float& w) {
    width = (w < 0.0) ? 0.0 : w;
@@ -37,6 +57,14 @@ void Rectangle::set_height(const float& h) {
    height = (h < 0.0) ? 0.0 : h;
 }
 
+void Rectangle::set_x(const float& x) {
+   this->x = x;
+}
+
+void Rectangle::set_y(const float& y) {
+   this->y = y;
+}
+
 // Вычисляет площадь
 float Rectangle::area() const {
    return width * height;
@@ -45,6 +73,16 @@ float Rectangle::area() const {
 // Вычисляет периметр
 float Rectangle::perimeter() const {
    return 2 * (width + height);
+}
+
+// Вычисляет длину диагонали
+float Rectangle::diagonal() const {
+   return sqrt(width * width + height * height);
+}
+
+// Проверяет, является ли прямоугольник квадратом
+bool Rectangle::is_square() const {
+   return fabs(width - height) < eps;
 }
 
 void tests() {
